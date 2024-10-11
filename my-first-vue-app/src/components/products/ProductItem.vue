@@ -1,22 +1,18 @@
 <template>
-  <div>
-    <!-- eslint-disable-next-line no-undef -->
-    <h3>{{ product.name }} - {{ product.price }}</h3>
-    <button @click="addToCart">Add To Cart</button>
+  <div class="product-item">
+    <h2>{{ product.name }}</h2>
+    <p>Price: {{ product.price }}$</p>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    product: {
-      type: Object,
-      required: true,
-    },
+    product: Object
   },
   methods: {
-    addToCart() {
-      this.$emit("addToCart", this.product);
+    addToCart(product) {
+      this.$store.dispatch('addToCart', product)
     },
   },
 };
