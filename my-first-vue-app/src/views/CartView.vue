@@ -4,7 +4,11 @@
     <ul v-if="cartItems.length">
       <li v-for="item in cartItems" :key="item.id">
         {{ item.name }} - {{ item.price }}$ x {{ item.quantity }}
-        <input type="number" v-model.number="item.quantity" @input="updateQuantity(item.id, item.quantity)" />
+        <input
+          type="number"
+          v-model.number="item.quantity"
+          @input="updateQuantity(item.id, item.quantity)"
+        />
         <button @click="removeItem(item.id)">Remove</button>
       </li>
     </ul>
@@ -21,15 +25,15 @@ export default {
     },
     cartTotalPrice() {
       return this.$store.getters.cartTotalPrice;
-    }
+    },
   },
   methods: {
     removeItem(productId) {
-      this.$store.dispatch('removeFromCart', productId);
+      this.$store.dispatch("removeFromCart", productId);
     },
     updateQuantity(productId, quantity) {
-      this.$store.dispatch('updateQuantity', { productId, quantity });
-    }
-  }
+      this.$store.dispatch("updateQuantity", { productId, quantity });
+    },
+  },
 };
 </script>
